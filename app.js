@@ -26,8 +26,42 @@ function createElement(recipe) {
   return li;
 }
 
+function onButtonClick(event, recipes) {
+  const target = event.target;
+  const key = target.dataset.key;
+  const value = target.dataset.value;
+  if (key == null || value == null) {
+    return;
+  }
+  console.log(`key = ${key} value = ${value}`);
+  findIngs(recipes);
+  // updateItems(recipes, key, value);
+}
+
+function findIngs(recipes) {
+  recipes.forEach((recipe) => {
+    const name = recipe.RECIPE_NM_KO;
+    const sum = recipe.SUMRY;
+    console.log(`name = ${recipe.RECIPE_NM_KO} sum = ${recipe.SUMRY}`);
+    // recipes.MAIN_ING =
+  });
+}
+
+function updateRecipes(recipes, key, value) {
+  findIngs(recipes);
+  recipes.forEach((recipe) => {
+    if (recipe.dataset[key] === value) {
+      recipe.classList.remove("invisible");
+    } else {
+      recipe.classList.add("invisible");
+    }
+  });
+}
+
 loadRecipes().then((data) => {
   const elements = data.map(createElement);
   const container = document.querySelector(".recipes");
   container.append(...elements);
+  const ings = document.querySelector(".ings");
+  ings.addEventListener("click", (event) => onButtonClick(event, data));
 });
