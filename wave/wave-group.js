@@ -2,7 +2,7 @@ import { Wave } from "./line.js";
 
 export class WaveGroup {
   constructor() {
-    this.totalWaves = 1;
+    this.totalWaves = 3;
     this.totalPoints = 6;
 
     this.color = [
@@ -18,7 +18,7 @@ export class WaveGroup {
     }
   }
   resize(stageWidth, stageHeight) {
-    for (let i = 0; i, this.totalWaves; i++) {
+    for (let i = 0; i < this.totalWaves; i++) {
       const wave = this.waves[i];
       wave.resize(stageWidth, stageHeight);
     }
