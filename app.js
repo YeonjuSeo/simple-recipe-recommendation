@@ -1,67 +1,60 @@
 // Fetch the items from the JSON file
-function loadRecipes() {
+function loadItems() {
   return fetch("recipes.json")
     .then((response) => response.json())
     .then((json) => json.recipes);
 }
 
-function createElement(recipe) {
-  const img = document.createElement("img");
-  img.setAttribute("class", "thumbnail");
-  img.setAttribute("src", recipe.IMG_URL);
+// Update the list with the given items
+function displayItems(recipes) {
+  const container = document.querySelector(".recipes");
+  container.innerHTML = recipes
+    .map((recipe) => createHTMLString(recipe))
+    .join("");
+}
 
-  const span = document.createElement("span");
-  span.setAttribute("class", "description");
-  span.innerText = `${recipe.RECIPE_NM_KO}
-   ${recipe.SUMRY}`;
+// Create HTML list item from the given data item
+function createHTMLString(recipe) {
+  return `
+    <li class="recipe">
+        <img src="${recipe.IMG_URL}" alt="${recipe.RECIPE_NM_KO}" class="item__thumbnail" />
+        <span class="item__description">${recipe.RECIPE_NM_KO}, ${recipe.SUMRY}</span>
+    </li>
+    `;
+}
 
-  const li = document.createElement("li");
-  li.setAttribute("class", "recipe");
-  li.setAttribute("recipe__level", recipe.LEVEL_NM);
-  li.setAttribute("recipe__type", recipe.TY_NM);
-
-  li.append(img);
-  li.append(span);
-
-  return li;
+function searchMainIng(recipes, key, value) {
+  //재료 종류(IRDNT_CODE), 요약(SUMRY), 레시피 이름(RECIPE_NM_KO)를 비교하며
+  //주재료가 맞는 레시피로 필터링함
+  recipes.forEach();
 }
 
 function onButtonClick(event, recipes) {
-  const target = event.target;
-  const key = target.dataset.key;
-  const value = target.dataset.value;
+  console.log(event.target);
+  const dataset = event.target.dataset;
+  console.log(dataset);
+  const key = dataset.key;
+  const value = dataset.value;
+  console.log(`key = ${key} value = ${value}`);
+
   if (key == null || value == null) {
     return;
   }
-  console.log(`key = ${key} value = ${value}`);
-  findIngs(recipes);
-  // updateItems(recipes, key, value);
+  // searchMainIng(recipes, key, value);
+  displayItems(recipes.filter((recipe) => recipe[key] === value));
 }
 
-function findIngs(recipes) {
-  recipes.forEach((recipe) => {
-    const name = recipe.RECIPE_NM_KO;
-    const sum = recipe.SUMRY;
-    console.log(`name = ${recipe.RECIPE_NM_KO} sum = ${recipe.SUMRY}`);
-    // recipes.MAIN_ING =
-  });
+function setEventListeners(recipes) {
+  const logo = document.querySelector(".logo");
+  const buttons = document.querySelector(".ings");
+  logo.addEventListener("click", () => displayItems(recipes));
+  buttons.addEventListener("click", (event) => onButtonClick(event, recipes));
 }
 
-function updateRecipes(recipes, key, value) {
-  findIngs(recipes);
-  recipes.forEach((recipe) => {
-    if (recipe.dataset[key] === value) {
-      recipe.classList.remove("invisible");
-    } else {
-      recipe.classList.add("invisible");
-    }
-  });
-}
-
-loadRecipes().then((data) => {
-  const elements = data.map(createElement);
-  const container = document.querySelector(".recipes");
-  container.append(...elements);
-  const ings = document.querySelector(".ings");
-  ings.addEventListener("click", (event) => onButtonClick(event, data));
-});
+// main
+loadItems()
+  .then((recipes) => {
+    displayItems(recipes);
+    setEventListeners(recipes);
+  })
+  .catch(console.log);
