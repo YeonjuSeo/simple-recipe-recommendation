@@ -33,3 +33,7 @@ canvas {
 .recipe img {
   height: 80px;
 }
+
+.invisible {
+  display: none;
+}
