@@ -33,12 +33,10 @@ function onButtonClick(event, recipes) {
   if (key == null || value == null) {
     return;
   }
-  // console.log(`target = ${event.target} key = ${key} value = ${value}`);
-  findIngs(recipes, value);
-  // updateItems(recipes, key, value);
+  updateRecipes(recipes, value);
 }
 
-function findIngs(recipes, value) {
+function updateRecipes(recipes, value) {
   const li = document.querySelectorAll("li");
   console.log(li);
   let idx = 0;
@@ -54,17 +52,6 @@ function findIngs(recipes, value) {
       li[idx].classList.remove("invisible");
     }
     idx++;
-  });
-}
-
-function updateRecipes(recipes, key, value) {
-  // findIngs(recipes);
-  recipes.forEach((recipe) => {
-    if (recipe.dataset[key] === value) {
-      recipe.classList.remove("invisible");
-    } else {
-      recipe.classList.add("invisible");
-    }
   });
 }
 
