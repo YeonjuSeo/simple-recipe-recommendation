@@ -26,13 +26,22 @@ function createHTMLString(recipe) {
 function searchMainIng(recipes, key, value) {
   //재료 종류(IRDNT_CODE), 요약(SUMRY), 레시피 이름(RECIPE_NM_KO)를 비교하며
   //주재료가 맞는 레시피로 필터링함
-  recipes.forEach();
+  recipes.forEach(function (recipe) {
+    // if(recipe.IRDNT_CODE==null){
+    //   recipe.IRDNT_CODE =
+    // }
+    if (recipe.SUMRY.indexOf(value) != -1) {
+      console.log("Find!");
+    } else {
+      console.log("Not Find!");
+    }
+  });
 }
 
 function onButtonClick(event, recipes) {
-  console.log(event.target);
+  // console.log(event.target);
   const dataset = event.target.dataset;
-  console.log(dataset);
+  // console.log(dataset);
   const key = dataset.key;
   const value = dataset.value;
   console.log(`key = ${key} value = ${value}`);
@@ -40,8 +49,8 @@ function onButtonClick(event, recipes) {
   if (key == null || value == null) {
     return;
   }
-  // searchMainIng(recipes, key, value);
-  displayItems(recipes.filter((recipe) => recipe[key] === value));
+  searchMainIng(recipes, key, value);
+  // displayItems(recipes.filter((recipe) => recipe[key] === value));
 }
 
 function setEventListeners(recipes) {
