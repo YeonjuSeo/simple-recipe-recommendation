@@ -33,17 +33,21 @@ function onButtonClick(event, recipes) {
   if (key == null || value == null) {
     return;
   }
-  console.log(`key = ${key} value = ${value}`);
-  findIngs(recipes);
+  // console.log(`target = ${event.target} key = ${key} value = ${value}`);
+  findIngs(recipes, value);
   // updateItems(recipes, key, value);
 }
 
-function findIngs(recipes) {
+function findIngs(recipes, value) {
   recipes.forEach((recipe) => {
-    const name = recipe.RECIPE_NM_KO;
-    const sum = recipe.SUMRY;
-    console.log(`name = ${recipe.RECIPE_NM_KO} sum = ${recipe.SUMRY}`);
-    // recipes.MAIN_ING =
+    console.log(recipe);
+    if (recipe.SUMRY.indexOf(value) != -1) {
+      console.log("Find!");
+      // show.classList.toggle("invisible");
+    } else {
+      console.log("Not Find!");
+      recipe.classList.toggle("invisible");
+    }
   });
 }
 
