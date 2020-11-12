@@ -39,20 +39,26 @@ function onButtonClick(event, recipes) {
 }
 
 function findIngs(recipes, value) {
+  const li = document.querySelectorAll("li");
+  console.log(li);
+  let idx = 0;
   recipes.forEach((recipe) => {
-    console.log(recipe);
-    if (recipe.SUMRY.indexOf(value) != -1) {
-      console.log("Find!");
-      // show.classList.toggle("invisible");
-    } else {
+    if (
+      recipe.SUMRY.indexOf(value) === -1 &&
+      recipe.RECIPE_NM_KO.indexOf(value) === -1
+    ) {
       console.log("Not Find!");
-      recipe.classList.toggle("invisible");
+      li[idx].classList.add("invisible");
+    } else {
+      console.log("Find!");
+      li[idx].classList.remove("invisible");
     }
+    idx++;
   });
 }
 
 function updateRecipes(recipes, key, value) {
-  findIngs(recipes);
+  // findIngs(recipes);
   recipes.forEach((recipe) => {
     if (recipe.dataset[key] === value) {
       recipe.classList.remove("invisible");
