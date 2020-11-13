@@ -3,92 +3,106 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <link rel="stylesheet" href="fridge.css" />
+    <link rel="stylesheet" href="wave/wave-style.css" />
+    <link rel="stylesheet" href="style.css" />
     <title>Simple Recipes For One!</title>
   </head>
   <body>
     <!-- header  -->
-    <h1 class="logo" alt="logo">Simple Recipes<br />For One!</h1>
-    <!-- Recipes -->
-    <section class="ings">
-      <button class="ing">
-        <div class="ing__name">돼지고기</div>
-        <img
-          src="https://img.orga.co.kr/files/goods/20200406/146202_img3.jpg"
-          class="ing__img"
-          alt="돼지"
-          data-key="SUMRY RECIPE_NM_KO"
-          data-value="돼지"
-        />
-      </button>
-      <button class="ing">
-        <div class="ing__name">닭고기</div>
-        <img
-          src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F9984D93F5DF44AD935"
-          class="ing__img"
-          alt="닭"
-          data-key="SUMRY RECIPE_NM_KO"
-          data-value="닭"
-        />
-      </button>
-      <button class="ing">
-        <div class="ing__name">계란</div>
-        <img
-          src="https://pbs.twimg.com/profile_images/940983949668388866/l0xbKo3U_400x400.jpg"
-          class="ing__img"
-          alt="계란"
-          data-key="SUMRY RECIPE_NM_KO"
-          data-value="계란"
-        />
-      </button>
-      <button class="ing">
-        <div class="ing__name">대파</div>
-        <img
-          src="https://banziha.com/wp-content/uploads/2020/05/up_20200513141941.jpg"
-          class="ing__img"
-          alt="대파"
-          data-key="SUMRY RECIPE_NM_KO"
-          data-value="대파"
-        />
-      </button>
-      <button class="ing">
-        <div class="ing__name">양파</div>
-        <img
-          src="https://image.auction.co.kr/itemimage/18/b5/73/18b5735396.jpg"
-          class="ing__img"
-          alt="양파"
-          data-key="SUMRY RECIPE_NM_KO"
-          data-value="양파"
-        />
-      </button>
-      <button class="ing">
-        <div class="ing__name">양배추</div>
-        <img
-          src="https://post-phinf.pstatic.net/MjAxODAyMjFfNyAg/MDAxNTE5MTc5NjczMzk2.tTcOB44SMdmTjmBBYl7LHp5xhU3RStEfEi84xkA28Tsg.NWHbECP4ulGSo2UibgSC9uG9dZqLeInwXGmAQV-WrAAg.JPEG/1105526.jpg?type=w1200"
-          class="ing__img"
-          alt="양배추"
-          data-key="SUMRY RECIPE_NM_KO"
-          data-value="양배추"
-        />
-      </button>
-      <button class="ing">
-        <div class="ing__name">감자</div>
-        <img
-          src="https://th2.tmon.kr/thumbs/image/da6/79d/54b/4ddc8598f_700x700_95_FIT.jpg"
-          class="ing__img"
-          alt="감자"
-          data-key="SUMRY RECIPE_NM_KO"
-          data-value="감자"
-        />
-      </button>
+    <h2 class="logo" alt="logo" data-key="all" data-value="all">
+      <img
+        class="logo__img"
+        src="https://www.flaticon.com/svg/static/icons/svg/2983/2983263.svg"
+      />
+      Recipes For everyOne!
+    </h2>
+    <section class="main">
+      <div class="screen-column">
+        <!-- Recipes -->
+        <ul class="recipes"></ul>
+      </div>
+      <div class="screen-column">
+        <h3>Fridge</h3>
+        <section class="ings">
+          <button class="ing">
+            <img
+              src="https://img.orga.co.kr/files/goods/20200406/146202_img3.jpg"
+              class="ing__img"
+              alt="돼지"
+              data-key="SUMRY RECIPE_NM_KO"
+              data-value="돼지"
+            />
+            <div class="ing__name">돼지고기</div>
+          </button>
+          <button class="ing">
+            <img
+              src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F9984D93F5DF44AD935"
+              class="ing__img"
+              alt="닭"
+              data-key="SUMRY RECIPE_NM_KO"
+              data-value="닭"
+            />
+            <div class="ing__name">닭고기</div>
+          </button>
+          <button class="ing">
+            <img
+              src="https://pbs.twimg.com/profile_images/940983949668388866/l0xbKo3U_400x400.jpg"
+              class="ing__img"
+              alt="계란"
+              data-key="SUMRY RECIPE_NM_KO"
+              data-value="계란"
+            />
+            <div class="ing__name">계란</div>
+          </button>
+          <button class="ing">
+            <img
+              src="https://banziha.com/wp-content/uploads/2020/05/up_20200513141941.jpg"
+              class="ing__img"
+              alt="대파"
+              data-key="SUMRY RECIPE_NM_KO"
+              data-value="대파"
+            />
+            <div class="ing__name">대파</div>
+          </button>
+          <button class="ing">
+            <img
+              src="https://image.auction.co.kr/itemimage/18/b5/73/18b5735396.jpg"
+              class="ing__img"
+              alt="양파"
+              data-key="SUMRY RECIPE_NM_KO"
+              data-value="양파"
+            />
+            <div class="ing__name">양파</div>
+          </button>
+          <button class="ing">
+            <img
+              src="https://post-phinf.pstatic.net/MjAxODAyMjFfNyAg/MDAxNTE5MTc5NjczMzk2.tTcOB44SMdmTjmBBYl7LHp5xhU3RStEfEi84xkA28Tsg.NWHbECP4ulGSo2UibgSC9uG9dZqLeInwXGmAQV-WrAAg.JPEG/1105526.jpg?type=w1200"
+              class="ing__img"
+              alt="양배추"
+              data-key="SUMRY RECIPE_NM_KO"
+              data-value="양배추"
+            />
+            <div class="ing__name">양배추</div>
+          </button>
+          <button class="ing">
+            <img
+              src="https://th2.tmon.kr/thumbs/image/da6/79d/54b/4ddc8598f_700x700_95_FIT.jpg"
+              class="ing__img"
+              alt="감자"
+              data-key="SUMRY RECIPE_NM_KO"
+              data-value="감자"
+            />
+            <div class="ing__name">감자</div>
+          </button>
+        </section>
+      </div>
     </section>
-    <ul class="recipes"></ul>
+
     <script
       src="https://kit.fontawesome.com/6478f529f2.js"
       crossorigin="anonymous"
     ></script>
     <script src="filtering.js" defer></script>
-    <script type="module" src="wave/wave.js"></script>
+    <!-- <script type="module" src="wave/wave.js"></script> -->
   </body>
 </html>
