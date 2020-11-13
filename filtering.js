@@ -1,6 +1,6 @@
 // Fetch the items from the JSON file
-function loadRecipes() {
-  return fetch("recipes.json")
+function loadRecipesInfo() {
+  return fetch("data/recipes_info.json")
     .then((response) => response.json())
     .then((json) => json.recipes);
 }
@@ -10,35 +10,47 @@ function createElement(recipe) {
   img.setAttribute("class", "thumbnail");
   img.setAttribute("src", recipe.IMG_URL);
 
-  const span = document.createElement("span");
-  span.setAttribute("class", "description");
-  span.innerText = `${recipe.RECIPE_NM_KO}
-     ${recipe.SUMRY}`;
+  const div = document.createElement("div");
+  div.setAttribute("class", "description");
+  div.innerText = `${recipe.RECIPE_NM_KO}`;
 
-  const li = document.createElement("li");
-  li.setAttribute("class", "recipe");
-  li.setAttribute("recipe__level", recipe.LEVEL_NM);
-  li.setAttribute("recipe__type", recipe.TY_NM);
+  const a = document.createElement("a");
+  a.setAttribute("class", "recipe");
+  a.setAttribute("recipe__level", recipe.LEVEL_NM);
+  a.setAttribute("recipe__type", recipe.TY_NM);
+  a.setAttribute("recipe_id", recipe.RECIPE_ID);
 
-  li.append(img);
-  li.append(span);
+  a.append(img);
+  a.append(div);
 
-  return li;
+  return a;
 }
 
-function onButtonClick(event, recipes) {
+function findRecipes(event, recipes) {
   const target = event.target;
   const key = target.dataset.key;
   const value = target.dataset.value;
   if (key == null || value == null) {
     return;
+  } else if (key == "all" && value == "all") {
+    showAllRecipes(recipes);
+  } else {
+    updateRecipes(recipes, value);
   }
-  updateRecipes(recipes, value);
+}
+
+function showAllRecipes(recipes) {
+  const a = document.querySelectorAll("a");
+  let idx = 0;
+  console.log("Logo Clicked!");
+  recipes.forEach(function () {
+    a[idx].classList.remove("invisible");
+    idx++;
+  });
 }
 
 function updateRecipes(recipes, value) {
-  const li = document.querySelectorAll("li");
-  console.log(li);
+  const a = document.querySelectorAll("a");
   let idx = 0;
   recipes.forEach((recipe) => {
     if (
@@ -46,19 +58,22 @@ function updateRecipes(recipes, value) {
       recipe.RECIPE_NM_KO.indexOf(value) === -1
     ) {
       console.log("Not Find!");
-      li[idx].classList.add("invisible");
+      a[idx].classList.add("invisible");
     } else {
       console.log("Find!");
-      li[idx].classList.remove("invisible");
+      a[idx].classList.remove("invisible");
     }
     idx++;
   });
 }
 
-loadRecipes().then((data) => {
+loadRecipesInfo().then((data) => {
   const elements = data.map(createElement);
   const container = document.querySelector(".recipes");
   container.append(...elements);
+
+  const logo = document.querySelector(".logo");
   const ings = document.querySelector(".ings");
-  ings.addEventListener("click", (event) => onButtonClick(event, data));
+  logo.addEventListener("click", (event) => findRecipes(event, data));
+  ings.addEventListener("click", (event) => findRecipes(event, data));
 });
