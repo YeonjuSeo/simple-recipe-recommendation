@@ -16,6 +16,7 @@ function createElement(recipe) {
 
   const a = document.createElement("a");
   a.setAttribute("class", "recipe");
+  a.setAttribute("href", "recipe.html");
   a.setAttribute("recipe__level", recipe.LEVEL_NM);
   a.setAttribute("recipe__type", recipe.TY_NM);
   a.setAttribute("recipe_id", recipe.RECIPE_ID);
